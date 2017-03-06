@@ -27,4 +27,22 @@ Account.generate = function generate() {
   return new Account(secp256k1.generatePrivateKey())
 }
 
+Account.generateNegative = function generateNegative() {
+  arguguard('generateNegative', [], arguments)
+  let account
+  do {
+    account = Account.generate()
+  } while (account.compressedPublicKey.to('buffer')[0] !== 0x02)
+  return account
+}
+
+Account.generatePositive = function generatePositive() {
+  arguguard('generatePositive', [], arguments)
+  let account
+  do {
+    account = Account.generate()
+  } while (account.compressedPublicKey.to('buffer')[0] !== 0x03)
+  return account
+}
+
 module.exports = Account

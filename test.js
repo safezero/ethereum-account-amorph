@@ -13,6 +13,18 @@ describe('Account', () => {
   it('should generate', () => {
     account = Account.generate()
   })
+  it('should generate negative accounts', () => {
+    Array(10).fill(0).forEach(() => {
+      const negativeAccount = Account.generateNegative()
+      negativeAccount.compressedPublicKey.to('array')[0].should.equal(2)
+    })
+  })
+  it('should generate postive accounts', () => {
+    Array(10).fill(0).forEach(() => {
+      const positiveAccount = Account.generatePositive()
+      positiveAccount.compressedPublicKey.to('array')[0].should.equal(3)
+    })
+  })
   it('should have correct keys', () => {
     account.should.have.keys(['privateKey', 'compressedPublicKey', 'uncompressedPublicKey', 'address'])
   })
