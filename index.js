@@ -1,10 +1,9 @@
-const Amorph = require('amorph')
 const arguguard = require('arguguard')
 const secp256k1 = require('secp256k1-amorph-utils')
 const keccak256 = require('keccak256-amorph')
 
 function Account(privateKey) {
-  arguguard('Account', [Amorph], arguments)
+  arguguard('Account', ['Amorph'], arguments)
   this.privateKey = privateKey
   this.uncompressedPublicKey = secp256k1.derivePublicKey(privateKey, false)
   this.compressedPublicKey = secp256k1.convertPublicKey(this.uncompressedPublicKey, true)
@@ -18,7 +17,7 @@ function Account(privateKey) {
 }
 
 Account.prototype.deriveLinkedAccount = function deriveLinkedAccount(link) {
-  arguguard('deriveLinkedAccount', [Amorph], arguments)
+  arguguard('deriveLinkedAccount', ['Amorph'], arguments)
   return new Account(secp256k1.deriveLinkedPrivateKey(link, this.privateKey))
 }
 

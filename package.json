@@ -17,9 +17,8 @@
   },
   "homepage": "https://github.com/safezero/ethereum-account-amorph#readme",
   "dependencies": {
-    "amorph": "^1.1.0",
-    "arguguard": "0.0.5",
-    "keccak256-amorph": "0.0.1",
+    "arguguard": "^2.1.1",
+    "keccak256-amorph": "0.0.2",
     "secp256k1-amorph-utils": "0.0.3"
   },
   "devDependencies": {
