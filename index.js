@@ -7,10 +7,10 @@ function Account(privateKey) {
   this.privateKey = privateKey
   this.uncompressedPublicKey = secp256k1.derivePublicKey(privateKey, false)
   this.compressedPublicKey = secp256k1.convertPublicKey(this.uncompressedPublicKey, true)
-  this.address = keccak256(this.uncompressedPublicKey.as('array', (array) => {
+  this.address = keccak256(this.uncompressedPublicKey.as('uint8Array', (array) => {
     // drop first byte before hashing
     return array.slice(1)
-  })).as('array', (array) => {
+  })).as('uint8Array', (array) => {
     // take last 20 bytes after hashing
     return array.slice(-20)
   })

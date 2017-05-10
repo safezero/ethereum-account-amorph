@@ -18,14 +18,16 @@
   "homepage": "https://github.com/safezero/ethereum-account-amorph#readme",
   "dependencies": {
     "arguguard": "^2.1.1",
-    "keccak256-amorph": "0.0.3",
-    "secp256k1-amorph-utils": "0.0.4"
+    "keccak256-amorph": "^0.0.3",
+    "secp256k1-amorph-utils": "^1.0.0"
   },
   "devDependencies": {
+    "amorph-bn": "0.0.1",
+    "amorph-buffer": "^1.1.5",
     "chai": "^3.5.0",
-    "chai-amorph": "0.0.2",
+    "chai-amorph": "^0.0.5",
     "mocha": "^3.2.0",
-    "random-amorph": "0.0.1",
+    "random-amorph": "^1.0.0",
     "time-require": "^0.1.2"
   }
 }

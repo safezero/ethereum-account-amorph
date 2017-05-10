@@ -3,6 +3,14 @@ const Amorph = require('amorph')
 const chai = require('chai')
 const chaiAmorph = require('chai-amorph')
 const random = require('random-amorph')
+const amorphBufferPlugin = require('amorph-buffer')
+const amorphBnPlugin = require('amorph-bn')
+
+Amorph.loadPlugin(amorphBufferPlugin)
+Amorph.loadPlugin(amorphBnPlugin)
+Amorph.crossConverter.addPath(['buffer', 'hex', 'bn'])
+Amorph.crossConverter.addPath(['bn', 'hex', 'buffer'])
+Amorph.crossConverter.addPath(['hex', 'buffer', 'uint8Array'])
 
 chai.use(chaiAmorph)
 chai.should()
@@ -16,23 +24,23 @@ describe('Account', () => {
   it('should generate negative accounts', () => {
     Array(10).fill(0).forEach(() => {
       const negativeAccount = Account.generateNegative()
-      negativeAccount.compressedPublicKey.to('array')[0].should.equal(2)
+      negativeAccount.compressedPublicKey.to('uint8Array')[0].should.equal(2)
     })
   })
   it('should generate postive accounts', () => {
     Array(10).fill(0).forEach(() => {
       const positiveAccount = Account.generatePositive()
-      positiveAccount.compressedPublicKey.to('array')[0].should.equal(3)
+      positiveAccount.compressedPublicKey.to('uint8Array')[0].should.equal(3)
     })
   })
   it('should have correct keys', () => {
     account.should.have.keys(['privateKey', 'compressedPublicKey', 'uncompressedPublicKey', 'address'])
   })
   it('should have correct lengths', () => {
-    account.privateKey.to('array').should.have.length(32)
-    account.compressedPublicKey.to('array').should.have.length(33)
-    account.uncompressedPublicKey.to('array').should.have.length(65)
-    account.address.to('array').should.have.length(20)
+    account.privateKey.to('uint8Array').should.have.length(32)
+    account.compressedPublicKey.to('uint8Array').should.have.length(33)
+    account.uncompressedPublicKey.to('uint8Array').should.have.length(65)
+    account.address.to('uint8Array').should.have.length(20)
   })
   it('should create same account from privateKey', () => {
     const cloneAccount = new Account(account.privateKey)
