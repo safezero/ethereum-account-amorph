@@ -21,25 +21,25 @@ Account.prototype.deriveLinkedAccount = function deriveLinkedAccount(link) {
   return new Account(secp256k1.deriveLinkedPrivateKey(link, this.privateKey))
 }
 
-Account.generate = function generate() {
-  arguguard('generate', [], arguments)
-  return new Account(secp256k1.generatePrivateKey())
+Account.generate = function generate(Amorph) {
+  arguguard('generate', ['Function'], arguments)
+  return new Account(secp256k1.generatePrivateKey(Amorph))
 }
 
-Account.generateNegative = function generateNegative() {
-  arguguard('generateNegative', [], arguments)
+Account.generateNegative = function generateNegative(Amorph) {
+  arguguard('generateNegative', ['Function'], arguments)
   let account
   do {
-    account = Account.generate()
+    account = Account.generate(Amorph)
   } while (account.compressedPublicKey.to('buffer')[0] !== 0x02)
   return account
 }
 
-Account.generatePositive = function generatePositive() {
-  arguguard('generatePositive', [], arguments)
+Account.generatePositive = function generatePositive(Amorph) {
+  arguguard('generatePositive', ['Function'], arguments)
   let account
   do {
-    account = Account.generate()
+    account = Account.generate(Amorph)
   } while (account.compressedPublicKey.to('buffer')[0] !== 0x03)
   return account
 }

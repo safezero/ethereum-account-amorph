@@ -19,17 +19,17 @@ describe('Account', () => {
   let account
   let linkedAccount
   it('should generate', () => {
-    account = Account.generate()
+    account = Account.generate(Amorph)
   })
   it('should generate negative accounts', () => {
     Array(10).fill(0).forEach(() => {
-      const negativeAccount = Account.generateNegative()
+      const negativeAccount = Account.generateNegative(Amorph)
       negativeAccount.compressedPublicKey.to('uint8Array')[0].should.equal(2)
     })
   })
   it('should generate postive accounts', () => {
     Array(10).fill(0).forEach(() => {
-      const positiveAccount = Account.generatePositive()
+      const positiveAccount = Account.generatePositive(Amorph)
       positiveAccount.compressedPublicKey.to('uint8Array')[0].should.equal(3)
     })
   })
